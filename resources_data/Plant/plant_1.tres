@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PlantResource" load_steps=3 format=3 uid="uid://diqwa1ajubyod"]
+
+[ext_resource type="Texture2D" uid="uid://d4df3dkt2ivv" path="res://icon.svg" id="1_8tckr"]
+[ext_resource type="Script" path="res://_code/custom_resource/plant_resource.gd" id="1_ksp6s"]
+
+[resource]
+script = ExtResource("1_ksp6s")
+name = "Rosas"
+terrainType = 1
+icon = ExtResource("1_8tckr")
+orderToAnimation = 0

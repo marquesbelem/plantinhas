@@ -1,0 +1,4 @@
+class_name Enums
+extends Node
+
+enum TERRAIN_TYPE {MONTANHA,GRAMA,TERRA,AGUA,LAVA,MANGUE,AREIA}
