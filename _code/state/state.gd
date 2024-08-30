@@ -3,7 +3,7 @@ extends Node
 
 var is_running:bool = false
 
-func enter() -> void:
+func enter(res:PlantResource) -> void:
 	is_running = true
 	
 func exit() -> void:

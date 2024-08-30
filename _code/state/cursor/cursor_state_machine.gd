@@ -6,8 +6,11 @@ extends StateMachine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	change_state(state_default)
+	set_state_default()
 	
-func _input(event):
-	if event.is_action_pressed("click"):
-		print("oi")
+func set_state_selected(res:PlantResource=null) -> void: 
+	print("%s" % res.name)
+	change_state(state_selected, res)
+	
+func set_state_default(res:PlantResource=null) -> void: 
+	change_state(state_default, res)
