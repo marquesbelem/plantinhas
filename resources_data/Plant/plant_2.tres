@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="PlantResource" load_steps=3 format=3 uid="uid://dsgdvfs4p453m"]
 
-[ext_resource type="Texture2D" uid="uid://c2qklqx7ws5x8" path="res://temp/assets/61f99-9629L._AC_UF894,1000_QL80_.jpg" id="1_pallc"]
+[ext_resource type="Texture2D" uid="uid://bxts54mvhr7uk" path="res://temp/assets/png-transparent-pink-rose-rose-pink-flowers-pink-flowers-rose-blue-white-floribunda.png" id="1_28k2d"]
 [ext_resource type="Script" path="res://_code/custom_resource/plant_resource.gd" id="1_uqie5"]
 
 [resource]
 script = ExtResource("1_uqie5")
-name = "orquidea"
-terrainType = 1
-icon = ExtResource("1_pallc")
+e_name = "Rosa"
+e_terrainType = 4
+e_icon = ExtResource("1_28k2d")

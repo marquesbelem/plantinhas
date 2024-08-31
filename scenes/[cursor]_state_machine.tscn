@@ -10,9 +10,9 @@ size = Vector2(135, 139)
 
 [node name="UI" type="Node2D"]
 
-[node name="UI_Cursor_StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("cursor_sprite")]
+[node name="UI_Cursor_StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("e_cursor_sprite")]
 script = ExtResource("1_48fg3")
-cursor_sprite = NodePath("Cursor_Sprite2D")
+e_cursor_sprite = NodePath("Cursor_Sprite2D")
 
 [node name="Cursor_Sprite2D" type="Sprite2D" parent="UI_Cursor_StateMachine"]
 modulate = Color(1, 1, 1, 0.498039)
@@ -35,12 +35,12 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="UI_PlantSelection/Panel" node_paths=PackedStringArray("cursor_state_machine")]
+[node name="Sprite2D" type="Sprite2D" parent="UI_PlantSelection/Panel" node_paths=PackedStringArray("e_cursor_state_machine")]
 position = Vector2(74, 50)
 scale = Vector2(0.1, 0.1)
 script = ExtResource("5_cibki")
-cursor_state_machine = NodePath("../../../UI_Cursor_StateMachine")
-plant_resource = ExtResource("6_y8lsv")
+e_cursor_state_machine = NodePath("../../../UI_Cursor_StateMachine")
+e_plant_resource = ExtResource("6_y8lsv")
 
 [node name="Area2D" type="Area2D" parent="UI_PlantSelection/Panel/Sprite2D"]
 
@@ -48,12 +48,12 @@ plant_resource = ExtResource("6_y8lsv")
 position = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_xfy4e")
 
-[node name="Sprite2D2" type="Sprite2D" parent="UI_PlantSelection/Panel" node_paths=PackedStringArray("cursor_state_machine")]
+[node name="Sprite2D2" type="Sprite2D" parent="UI_PlantSelection/Panel" node_paths=PackedStringArray("e_cursor_state_machine")]
 position = Vector2(74, 178)
 scale = Vector2(0.1, 0.1)
 script = ExtResource("5_cibki")
-cursor_state_machine = NodePath("../../../UI_Cursor_StateMachine")
-plant_resource = ExtResource("4_wmaew")
+e_cursor_state_machine = NodePath("../../../UI_Cursor_StateMachine")
+e_plant_resource = ExtResource("4_wmaew")
 
 [node name="Area2D" type="Area2D" parent="UI_PlantSelection/Panel/Sprite2D2"]
 
