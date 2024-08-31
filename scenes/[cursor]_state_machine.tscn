@@ -1,36 +1,62 @@
-[gd_scene load_steps=7 format=3 uid="uid://divmdpxily8n"]
+[gd_scene load_steps=6 format=3 uid="uid://divmdpxily8n"]
 
-[ext_resource type="Script" path="res://_code/state/cursor/cursor_state_machine.gd" id="1_48fg3"]
-[ext_resource type="Script" path="res://_code/state/cursor/cursor_default_state.gd" id="2_07l7u"]
-[ext_resource type="Script" path="res://_code/state/cursor/cursor_selected_state.gd" id="3_y34xs"]
+[ext_resource type="Script" path="res://_code/state_machine/cursor_state_machine.gd" id="1_48fg3"]
+[ext_resource type="Resource" uid="uid://dsgdvfs4p453m" path="res://resources_data/Plant/plant_2.tres" id="4_wmaew"]
 [ext_resource type="Script" path="res://_code/ui/ui_plant_select.gd" id="5_cibki"]
 [ext_resource type="Resource" uid="uid://diqwa1ajubyod" path="res://resources_data/Plant/plant_1.tres" id="6_y8lsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfy4e"]
 size = Vector2(135, 139)
 
-[node name="CursorStateMachine" type="Node" node_paths=PackedStringArray("state_default", "state_selected")]
+[node name="UI" type="Node2D"]
+
+[node name="UI_Cursor_StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("cursor_sprite")]
 script = ExtResource("1_48fg3")
-state_default = NodePath("CursorDefaultState")
-state_selected = NodePath("CursorSelectedState")
+cursor_sprite = NodePath("Cursor_Sprite2D")
 
-[node name="CursorDefaultState" type="Node" parent="."]
-script = ExtResource("2_07l7u")
+[node name="Cursor_Sprite2D" type="Sprite2D" parent="UI_Cursor_StateMachine"]
+modulate = Color(1, 1, 1, 0.498039)
+z_index = 1
+scale = Vector2(0.1, 0.1)
 
-[node name="CursorSelectedState" type="Node" parent="."]
-script = ExtResource("3_y34xs")
+[node name="UI_PlantSelection" type="Node2D" parent="."]
+position = Vector2(1002, 2)
 
-[node name="UISelectionPlants" type="Node" parent="."]
+[node name="Panel" type="Panel" parent="UI_PlantSelection"]
+z_index = -2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = 147.0
+offset_bottom = 257.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="UISelectionPlants" node_paths=PackedStringArray("cursor_state_machine")]
-position = Vector2(207, 164)
+[node name="Sprite2D" type="Sprite2D" parent="UI_PlantSelection/Panel" node_paths=PackedStringArray("cursor_state_machine")]
+position = Vector2(74, 50)
 scale = Vector2(0.1, 0.1)
 script = ExtResource("5_cibki")
-cursor_state_machine = NodePath("../..")
+cursor_state_machine = NodePath("../../../UI_Cursor_StateMachine")
 plant_resource = ExtResource("6_y8lsv")
 
-[node name="Area2D" type="Area2D" parent="UISelectionPlants/Sprite2D"]
+[node name="Area2D" type="Area2D" parent="UI_PlantSelection/Panel/Sprite2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UISelectionPlants/Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI_PlantSelection/Panel/Sprite2D/Area2D"]
+position = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_xfy4e")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI_PlantSelection/Panel" node_paths=PackedStringArray("cursor_state_machine")]
+position = Vector2(74, 178)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("5_cibki")
+cursor_state_machine = NodePath("../../../UI_Cursor_StateMachine")
+plant_resource = ExtResource("4_wmaew")
+
+[node name="Area2D" type="Area2D" parent="UI_PlantSelection/Panel/Sprite2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI_PlantSelection/Panel/Sprite2D2/Area2D"]
 position = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_xfy4e")
