@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://divmdpxily8n"]
 
 [ext_resource type="Script" path="res://_code/state_machine/cursor_state_machine.gd" id="1_48fg3"]
-[ext_resource type="Resource" uid="uid://dsgdvfs4p453m" path="res://resources_data/Plant/plant_2.tres" id="4_wmaew"]
+[ext_resource type="Resource" uid="uid://dsgdvfs4p453m" path="res://resources_data/plant/plant_2.tres" id="4_wmaew"]
 [ext_resource type="Script" path="res://_code/ui/ui_plant_select.gd" id="5_cibki"]
-[ext_resource type="Resource" uid="uid://diqwa1ajubyod" path="res://resources_data/Plant/plant_1.tres" id="6_y8lsv"]
+[ext_resource type="Resource" uid="uid://diqwa1ajubyod" path="res://resources_data/plant/plant_1.tres" id="6_y8lsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfy4e"]
 size = Vector2(135, 139)
@@ -20,7 +20,7 @@ z_index = 1
 scale = Vector2(0.1, 0.1)
 
 [node name="UI_PlantSelection" type="Node2D" parent="."]
-position = Vector2(1002, 2)
+position = Vector2(1774, 2)
 
 [node name="Panel" type="Panel" parent="UI_PlantSelection"]
 z_index = -2
