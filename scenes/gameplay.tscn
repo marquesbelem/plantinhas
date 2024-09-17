@@ -1,14 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjmvtrwpfmkbi"]
+[gd_scene load_steps=3 format=3 uid="uid://cjmvtrwpfmkbi"]
 
-[ext_resource type="Script" path="res://_code/manager/level_manager.gd" id="1_gls8n"]
 [ext_resource type="PackedScene" uid="uid://bhxtb2upbtxdf" path="res://scenes/level_template.tscn" id="1_skdrn"]
 [ext_resource type="PackedScene" uid="uid://divmdpxily8n" path="res://scenes/[cursor]_state_machine.tscn" id="2_q21j6"]
 
 [node name="Gameplay" type="Node2D"]
-script = ExtResource("1_gls8n")
 
 [node name="[Code] LevelManager" type="Node2D" parent="."]
 
-[node name="Level" parent="." groups=["level_group"] instance=ExtResource("1_skdrn")]
+[node name="Level" parent="." instance=ExtResource("1_skdrn")]
 
-[node name="UI" parent="." groups=["ui_group"] instance=ExtResource("2_q21j6")]
+[node name="UI" parent="." instance=ExtResource("2_q21j6")]

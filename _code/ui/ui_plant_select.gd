@@ -6,7 +6,7 @@ extends Sprite2D
 @export var e_plant_resource: PlantResource
 #endregion 
 
-#region Base
+#region BASE
 func _ready():
 	name = e_plant_resource.e_name
 	texture = e_plant_resource.e_icon

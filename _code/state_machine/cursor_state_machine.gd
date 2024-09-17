@@ -7,7 +7,6 @@ extends Node2D
 
 #region PRIVATE FIELDS
 var current_state: EnumsStates.CURSOR
-var plant_resource: PlantResource
 #endregion
 
 #region BASE
@@ -23,7 +22,7 @@ func _process(_delta):
 func set_state_selected(res:PlantResource=null) -> void: 
 	current_state = EnumsStates.CURSOR.SELECTED
 	e_cursor_sprite.texture = res.e_icon
-	plant_resource = res
+	PlayerData.e_plant_resource = res
 	
 func set_state_default() -> void: 
 	current_state = EnumsStates.CURSOR.DEFAULT

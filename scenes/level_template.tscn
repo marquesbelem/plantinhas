@@ -1,73 +1,54 @@
-[gd_scene load_steps=7 format=4 uid="uid://bhxtb2upbtxdf"]
+[gd_scene load_steps=5 format=4 uid="uid://bhxtb2upbtxdf"]
 
-[ext_resource type="Texture2D" uid="uid://cm1tp1rn8xreq" path="res://temp/assets/Dirt Terrain - Test.png" id="1_oddb0"]
+[ext_resource type="Script" path="res://_code/manager/plant_machine.gd" id="1_xvxrm"]
 [ext_resource type="Texture2D" uid="uid://dwsiffiotg14e" path="res://temp/assets/test_terrain_tileset.png" id="2_wdol1"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ecu2i"]
-texture = ExtResource("1_oddb0")
-texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-0:0/0/custom_data_0 = "GRASS"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6nfg6"]
-texture = ExtResource("2_wdol1")
-texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-0:0/0/custom_data_0 = "DIRT"
-1:0/0 = 0
-1:0/0/custom_data_0 = "GRASS"
-2:0/0 = 0
-2:0/0/custom_data_0 = "MANGROVE"
-0:1/0 = 0
-0:1/0/custom_data_0 = "SAND"
-1:1/0 = 0
-1:1/0/custom_data_0 = "WATER"
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:0/0 = 0
-3:0/0/custom_data_0 = "MOUNTAIN"
-3:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1l3kj"]
 texture = ExtResource("2_wdol1")
 texture_region_size = Vector2i(256, 256)
 0:0/0 = 0
+0:0/0/custom_data_0 = 1
 1:0/0 = 0
+1:0/0/custom_data_0 = 2
 2:0/0 = 0
+2:0/0/custom_data_0 = 3
 0:1/0 = 0
+0:1/0/custom_data_0 = 5
 1:1/0 = 0
+1:1/0/custom_data_0 = 6
 2:1/0 = 0
+2:1/0/custom_data_0 = -1
+2:1/0/custom_data_1 = -1
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
+3:0/0 = 0
+3:0/0/custom_data_0 = 4
 
 [sub_resource type="TileSet" id="TileSet_ibasq"]
 tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(272, 157)
 custom_data_layer_0/name = "TERRAIN_TYPE"
-custom_data_layer_0/type = 4
-sources/0 = SubResource("TileSetAtlasSource_ecu2i")
-sources/1 = SubResource("TileSetAtlasSource_6nfg6")
-sources/2 = SubResource("TileSetAtlasSource_1l3kj")
+custom_data_layer_0/type = 2
+custom_data_layer_1/name = "STATE"
+custom_data_layer_1/type = 2
+sources/0 = SubResource("TileSetAtlasSource_1l3kj")
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("e_terrain_layer", "e_interactive_layer")]
+script = ExtResource("1_xvxrm")
+e_terrain_layer = NodePath("Terrain_Layer")
+e_interactive_layer = NodePath("[Interactive] Flowerbed_Layer")
 
 [node name="Terrain_Layer" type="TileMapLayer" parent="."]
-position = Vector2(970, 610)
-tile_map_data = PackedByteArray("AAD7/wIAAQAAAAAAAAD7/wEAAQAAAAAAAAD7/wAAAQAAAAAAAAD6/wEAAQAAAAAAAAD6/wAAAQAAAAAAAAD6////AQAAAAAAAAD8/wIAAQABAAAAAAD8/wEAAQABAAAAAAD8/wAAAQABAAAAAAD8////AQABAAAAAAD7////AQACAAAAAAD7//7/AQACAAAAAAD8//7/AQACAAAAAAD9//7/AQACAAAAAAD9////AQACAAAAAAD9/wAAAQADAAAAAAD9/wEAAQADAAAAAAD9/wIAAQADAAAAAAD+/wIAAQADAAAAAAD+/wAAAQADAAAAAAD+/wEAAQADAAAAAAD+////AQABAAEAAAD+//7/AQABAAEAAAD///7/AQABAAEAAAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAD/////AQABAAEAAAD//wAAAQABAAEAAAD//wEAAQABAAEAAAAAAAIAAQABAAEAAAD//wIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAD+//3/AQAAAAEAAAD///3/AQAAAAEAAAAAAP3/AQAAAAEAAAABAP3/AQAAAAEAAAABAP7/AQAAAAEAAAABAP//AQAAAAEAAAABAAAAAQAAAAEAAAABAAEAAQAAAAEAAAABAAIAAQAAAAEAAAD+//z/AQAAAAEAAAD///z/AQAAAAEAAAAAAPz/AQAAAAEAAAACAAAAAQAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAADAAMAAAAAAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAACAAAAAAAAAAAAAAACAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAADAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAHAPz/AAAAAAAAAAAHAP3/AAAAAAAAAAAIAP3/AAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAKAP7/AAAAAAAAAAAKAP//AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ibasq")
 
 [node name="[Interactive] Flowerbed_Layer" type="TileMapLayer" parent="."]
-position = Vector2(970, 610)
 tile_map_data = PackedByteArray("AAD+/wAAAQACAAEAAAA=")
-enabled = false
 tile_set = SubResource("TileSet_ibasq")
 y_sort_origin = 1
 
 [node name="Terrain_Decor_Layer" type="TileMapLayer" parent="."]
-position = Vector2(1242, 554)
 tile_map_data = PackedByteArray("AAD9/wIAAgACAAEAAAD9/wEAAgACAAEAAAA=")
 tile_set = SubResource("TileSet_ibasq")
