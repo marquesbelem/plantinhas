@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 5fdac4cf29aac456fae10b2badd410b4
+timeCreated: 1454124944
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 68727
+  packageName: Z Smart Tiles
+  packageVersion: 1.1
+  assetPath: Assets/ZSmartTile/Components/ZST_SmartTile.cs
+  uploadId: 177433

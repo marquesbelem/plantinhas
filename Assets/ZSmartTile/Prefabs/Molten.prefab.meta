@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c25323913a9954e99af10aa4288fa213
+timeCreated: 1493271487
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 68727
+  packageName: Z Smart Tiles
+  packageVersion: 1.1
+  assetPath: Assets/ZSmartTile/Prefabs/Molten.prefab
+  uploadId: 177433
