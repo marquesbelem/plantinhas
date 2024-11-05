@@ -4,6 +4,7 @@ using UnityEngine;
 public class Terrain : MonoBehaviour
 {
     [SerializeField] private TerrainData m_Data;
+    [SerializeField] private GameObject m_PlantPrefab;
 
     private SpriteRenderer m_Sprite;
     private PlantState m_CurrentPlantState;
@@ -16,26 +17,25 @@ public class Terrain : MonoBehaviour
 
     public PlantState Plant(PlantData data, TerrainType terrainType)
     {
-        var go = new GameObject(); 
+        var go = Instantiate(m_PlantPrefab);
         go.transform.SetParent(transform, false);
         go.name = data.name;
-        var plant = go.AddComponent<PlantState>();
-        plant.GetComponent<PlantState>()
-            .Setup(data, terrainType);
+        var plant = go.GetComponent<PlantState>();
+        plant.Setup(data, terrainType);
         return plant;
     }
 
     private void OnMouseDown()
     {
-        if (Application.isPlaying == false) return;
+        if (Application.isPlaying == false || 
+            MouseController.Instance.PlantData == null) return;
         
-        Debug.Log("OnMouseDown");
         if(m_CurrentPlantState != null)
         {
-            if (m_CurrentPlantState?.State != StatePlant.Seed) return;
+            if (m_CurrentPlantState?.State == StatePlant.Adult) return;
             Destroy(m_CurrentPlantState.gameObject);
         }
 
-        m_CurrentPlantState = Plant(MouseController.Instance.plantData, m_Data.TerrainType);
+        m_CurrentPlantState = Plant(MouseController.Instance.PlantData, m_Data.TerrainType);
     }
 }
