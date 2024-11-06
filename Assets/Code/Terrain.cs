@@ -1,27 +1,38 @@
 using UnityEngine;
-[ExecuteInEditMode]
 
 public class Terrain : MonoBehaviour
 {
     [SerializeField] private TerrainData m_Data;
     [SerializeField] private GameObject m_PlantPrefab;
+    [SerializeField] private Transform m_Pivot; 
 
     private SpriteRenderer m_Sprite;
     private PlantState m_CurrentPlantState;
 
-    private void OnEnable()
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        SetupSprite();
+    }
+#endif
+
+    private void Start()
+    {
+        SetupSprite();
+    }
+    
+    private void SetupSprite()
     {
         m_Sprite = GetComponent<SpriteRenderer>();
         m_Sprite.sprite = m_Data.Sprite;
     }
 
-    public PlantState Plant(PlantData data, TerrainType terrainType)
+    private PlantState Plant(PlantData data, TerrainType terrainType)
     {
-        var go = Instantiate(m_PlantPrefab);
-        go.transform.SetParent(transform, false);
-        go.name = data.name;
-        var plant = go.GetComponent<PlantState>();
-        plant.Setup(data, terrainType);
+        var plant = Instantiate(m_PlantPrefab)
+            .GetComponent<PlantState>();
+
+        plant.Setup(data, terrainType, transform, m_Pivot);
         return plant;
     }
 

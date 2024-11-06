@@ -12,21 +12,27 @@ public class MouseController : MonoBehaviour
     {
         Instance = this;
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        m_SpriteRenderer.enabled = false; 
+        m_SpriteRenderer.enabled = false;
     }
 
     private void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        mousePosition.z = 0;
-        transform.position = mousePosition;
+        
+        #region Move Sprite
+        if (m_PlantData != null)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            mousePosition.z = 0;
+            transform.position = mousePosition;
+        }
+        #endregion
     }
 
     public void SelectedPlant(PlantData plant)
     {
         m_PlantData = plant;
-        m_SpriteRenderer.sprite = m_PlantData.Sprites.Find(s=>s.State == StatePlant.Adult).Sprite;  
+        m_SpriteRenderer.sprite = m_PlantData.Sprites.Find(s => s.State == StatePlant.Adult).Sprite;
         m_SpriteRenderer.enabled = true;
     }
 

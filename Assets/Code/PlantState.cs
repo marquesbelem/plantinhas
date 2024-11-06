@@ -40,8 +40,12 @@ public class PlantState : MonoBehaviour
         m_OnChangedState?.Invoke();
     }
 
-    public void Setup(PlantData data, TerrainType terrainType)
+    public void Setup(PlantData data, TerrainType terrainType, Transform parent, Transform pivot)
     {
+        transform.SetParent(parent, false);
+        transform.position = pivot.position;
+        name = data.name;
+
         m_Data = data;
         m_OnChangedState += OnChangedState;
         SetState(StatePlant.Seed, terrainType);
@@ -78,38 +82,39 @@ public class PlantState : MonoBehaviour
     {
         StartCoroutine(ExecuteState(StatePlant.Seed));
 
-        if (m_TerrainTypeSelected == m_Data.TerrainType)
-        {
-            Debug.Log("seed");
-            SetState(StatePlant.Bud, m_TerrainTypeSelected);
-        }
+        if (IsValid() == false) return;
+        
+        SetState(StatePlant.Bud, m_TerrainTypeSelected);
     }
 
     private void Bud()
     {
-        if (m_TerrainTypeSelected == m_Data.TerrainType)
-        {
-            Debug.Log("Bud");
-            StartCoroutine(ExecuteState(StatePlant.Bud));
-            SetState(StatePlant.Adult, m_TerrainTypeSelected);
-        }
+        if (IsValid() == false) return;
+
+        StartCoroutine(ExecuteState(StatePlant.Bud));
+        SetState(StatePlant.Adult, m_TerrainTypeSelected);
     }
 
     private void Adult()
     {
-        if (m_TerrainTypeSelected == m_Data.TerrainType)
-        {
+        if (IsValid() == false) return;
 
-            Debug.Log("Adult");
-            StartCoroutine(ExecuteState(StatePlant.Adult));
-        }
+        StartCoroutine(ExecuteState(StatePlant.Adult));
+    }
+
+    private bool IsValid()
+    {
+        return m_TerrainTypeSelected == m_Data.TerrainType;
     }
 
     private IEnumerator ExecuteState(StatePlant state)
     {
         var time = m_Data.WaitTimes.Find(t => t.State == state).WaitTime;
+
         yield return new WaitForSeconds(time);
+
         m_Sprite.sprite = m_Data.Sprites.Find(s => s.State == state).Sprite;
+        m_Sprite.color = m_Data.Sprites.Find(s => s.State == state).Color;
     }
     #endregion
 }

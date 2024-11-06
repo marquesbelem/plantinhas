@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f326751776a45a34f99d0063de80cbf2, type: 3}
+  m_Name: Plant_02
+  m_EditorClassIdentifier: 
+  TerrainType: 5
+  Sprites:
+  - State: 1
+    Sprite: {fileID: -631510259546485383, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
+    Color:
+      serializedVersion: 2
+      rgba: 4284506363
+  - State: 2
+    Sprite: {fileID: -631510259546485383, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
+    Color:
+      serializedVersion: 2
+      rgba: 4278245887
+  - State: 3
+    Sprite: {fileID: -631510259546485383, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
+    Color:
+      serializedVersion: 2
+      rgba: 4279172864
+  WaitTimes:
+  - State: 1
+    WaitTime: 0
+  - State: 2
+    WaitTime: 2
+  - State: 3
+    WaitTime: 3

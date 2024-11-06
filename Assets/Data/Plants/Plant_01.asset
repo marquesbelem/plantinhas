@@ -15,11 +15,20 @@ MonoBehaviour:
   TerrainType: 3
   Sprites:
   - State: 1
-    Sprite: {fileID: 741763666, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
+    Sprite: {fileID: 143346167644803916, guid: 63d62ab086e791a48b747eb1e75f1dee, type: 3}
+    Color:
+      serializedVersion: 2
+      rgba: 4284506363
   - State: 2
-    Sprite: {fileID: 3636033907932196756, guid: 873db8e18b8b5044590a80df116377d0, type: 3}
+    Sprite: {fileID: 143346167644803916, guid: 63d62ab086e791a48b747eb1e75f1dee, type: 3}
+    Color:
+      serializedVersion: 2
+      rgba: 4278245887
   - State: 3
-    Sprite: {fileID: 6512455328146774374, guid: 6463769eabb56bb4abf304c3ed14cbae, type: 3}
+    Sprite: {fileID: 143346167644803916, guid: 63d62ab086e791a48b747eb1e75f1dee, type: 3}
+    Color:
+      serializedVersion: 2
+      rgba: 4279172864
   WaitTimes:
   - State: 1
     WaitTime: 0

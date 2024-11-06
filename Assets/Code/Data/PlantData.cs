@@ -14,6 +14,7 @@ public class PlantData : ScriptableObject
     {
         public StatePlant State;
         public Sprite Sprite;
+        public Color32 Color;
     }
 
     [Serializable]
