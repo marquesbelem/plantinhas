@@ -16,8 +16,8 @@ public class PlantState : MonoBehaviour
     [SerializeField] private PlantData m_Data;
 
     private SpriteRenderer m_Sprite;
-    private TerrainType m_TerrainTypeSelected;
-    private Action m_OnChangedState;
+    private Action m_OnChangedState_CorretilyMet;
+    private Action m_OnChangedState_WrongMet;
 
     public StatePlant State { get { return m_State; } }
 
@@ -29,30 +29,34 @@ public class PlantState : MonoBehaviour
 
     private void OnDestroy()
     {
-        m_OnChangedState -= OnChangedState;
+        m_OnChangedState_CorretilyMet -= OnChangedStateCorretilyMet;
     }
     #endregion
 
-    public void SetState(StatePlant state, TerrainType terrainType)
+    public void SetState(StatePlant state)
     {
         m_State = state;
-        m_TerrainTypeSelected = terrainType;
-        m_OnChangedState?.Invoke();
+        m_OnChangedState_CorretilyMet?.Invoke();
+        m_OnChangedState_WrongMet?.Invoke();
     }
 
-    public void Setup(PlantData data, TerrainType terrainType, Transform parent, Transform pivot)
+    public void Setup(PlantData data, Transform parent, Transform pivot, bool isMet)
     {
         transform.SetParent(parent, false);
         transform.position = pivot.position;
         name = data.name;
 
         m_Data = data;
-        m_OnChangedState += OnChangedState;
-        SetState(StatePlant.Seed, terrainType);
+        if (isMet)
+            m_OnChangedState_CorretilyMet += OnChangedStateCorretilyMet;
+        else
+            m_OnChangedState_WrongMet += OnChangedStateWrongMet;
+
+        SetState(StatePlant.Seed);
     }
 
-    #region States
-    private void OnChangedState()
+    #region Events 
+    private void OnChangedStateCorretilyMet()
     {
         switch (m_State)
         {
@@ -73,6 +77,21 @@ public class PlantState : MonoBehaviour
         }
     }
 
+    private void OnChangedStateWrongMet()
+    {
+        switch (m_State)
+        {
+            case StatePlant.None:
+                None();
+                break;
+            case StatePlant.Seed:
+                Seed();
+                break;
+        }
+    }
+    #endregion
+
+    #region States
     private void None()
     {
         m_Sprite.sprite = m_Data.Sprites.Find(s => s.State == StatePlant.None).Sprite;
@@ -81,30 +100,18 @@ public class PlantState : MonoBehaviour
     private void Seed()
     {
         StartCoroutine(ExecuteState(StatePlant.Seed));
-
-        if (IsValid() == false) return;
-        
-        SetState(StatePlant.Bud, m_TerrainTypeSelected);
+        SetState(StatePlant.Bud);
     }
 
     private void Bud()
     {
-        if (IsValid() == false) return;
-
         StartCoroutine(ExecuteState(StatePlant.Bud));
-        SetState(StatePlant.Adult, m_TerrainTypeSelected);
+        SetState(StatePlant.Adult);
     }
 
     private void Adult()
     {
-        if (IsValid() == false) return;
-
         StartCoroutine(ExecuteState(StatePlant.Adult));
-    }
-
-    private bool IsValid()
-    {
-        return m_TerrainTypeSelected == m_Data.TerrainType;
     }
 
     private IEnumerator ExecuteState(StatePlant state)

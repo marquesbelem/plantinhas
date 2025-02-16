@@ -8,6 +8,7 @@ public class PlantData : ScriptableObject
     public TerrainType TerrainType;
     public List<StateSprites> Sprites;
     public List<StateTime> WaitTimes;
+    public RequirementsType Requirements;
 
     [Serializable]
     public struct StateSprites
@@ -22,5 +23,11 @@ public class PlantData : ScriptableObject
     {
         public StatePlant State;
         public float WaitTime;
+    }
+
+    public enum RequirementsType
+    {
+        INSIDE,
+        ADJACENT
     }
 }
