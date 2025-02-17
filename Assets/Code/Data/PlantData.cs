@@ -6,9 +6,16 @@ using UnityEngine;
 public class PlantData : ScriptableObject
 {
     public TerrainType TerrainType;
+
+    [Space(10)]
+    [Header("Requirements")]
+    public RequirementsType Requirements;
+    public ResultData Result;
+
+    [Space(10)]
+    [Header("Visual")]
     public List<StateSprites> Sprites;
     public List<StateTime> WaitTimes;
-    public RequirementsType Requirements;
 
     [Serializable]
     public struct StateSprites
@@ -29,5 +36,11 @@ public class PlantData : ScriptableObject
     {
         INSIDE,
         ADJACENT
+    }
+
+    public enum ResultType
+    {
+        TRANSFORM,
+        REPLICA
     }
 }

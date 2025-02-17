@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Plant_01
   m_EditorClassIdentifier: 
   TerrainType: 3
+  Requirements: 1
+  Result: {fileID: 11400000, guid: 2a9b332292a1ca94491e5b3237719d06, type: 2}
   Sprites:
   - State: 1
     Sprite: {fileID: 143346167644803916, guid: 63d62ab086e791a48b747eb1e75f1dee, type: 3}
@@ -36,4 +38,3 @@ MonoBehaviour:
     WaitTime: 2
   - State: 3
     WaitTime: 3
-  Requirements: 1

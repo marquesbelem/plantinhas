@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class AdjacentRequirement
 {
     private static float m_RayDistance = 2f;
     private static Color m_RayColor = Color.red;
-    private static List<Terrain> m_AdjacenteTerrains = new List<Terrain>();
+    private static List<Terrain> m_AdjacentTerrainsMet = new List<Terrain>();
+    private static List<Terrain> m_AdjacentAnyTerrains = new List<Terrain>();
+    public static List<Terrain> AdjacentAnyTerrains => m_AdjacentAnyTerrains;
     public static Action OnCompletedRaycast;
 
     public static bool IsValid()
     {
-        return m_AdjacenteTerrains.Count > 0;
+        return m_AdjacentTerrainsMet.Count > 0;
     }
 
     public static void Raycasts(TerrainType terrainRequirement, GameObject target)
@@ -34,12 +37,16 @@ public static class AdjacentRequirement
             foreach (var hit in hits)
             {
                 if (hit.collider == null || hit.collider.gameObject == target) continue;
+
                 if (hit.collider.TryGetComponent<Terrain>(out var component))
                 {
+                    if (!m_AdjacentAnyTerrains.Contains(component))
+                        m_AdjacentAnyTerrains.Add(component);
+
                     if (component.Data.TerrainType != terrainRequirement ||
-                        m_AdjacenteTerrains.Contains(component))
+                        m_AdjacentTerrainsMet.Contains(component))
                         continue;
-                    m_AdjacenteTerrains.Add(component);
+                    m_AdjacentTerrainsMet.Add(component);
                 }
             }
         }
@@ -49,7 +56,8 @@ public static class AdjacentRequirement
 
     public static void Reset()
     {
-        m_AdjacenteTerrains.Clear();
+        m_AdjacentTerrainsMet.Clear();
+        m_AdjacentAnyTerrains.Clear();
         OnCompletedRaycast = null;
     }
 }
