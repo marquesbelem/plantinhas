@@ -36,3 +36,4 @@ MonoBehaviour:
     WaitTime: 2
   - State: 3
     WaitTime: 3
+  Requirements: 1

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static PlantData;
 
@@ -9,7 +10,9 @@ public class Terrain : MonoBehaviour
 
     private SpriteRenderer m_Sprite;
     private PlantState m_CurrentPlantState;
+    private bool m_IsClick;
 
+    public TerrainData Data => m_Data;
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -42,30 +45,50 @@ public class Terrain : MonoBehaviour
         if (Application.isPlaying == false ||
             MouseController.Instance.PlantData == null) return;
 
+        m_IsClick = true;
+
         if (m_CurrentPlantState != null)
         {
             if (m_CurrentPlantState?.State == StatePlant.Adult) return;
             Destroy(m_CurrentPlantState.gameObject);
         }
 
-        ExecuteRequirements();
-    }
-
-    private void ExecuteRequirements()
-    {
-        var plantData = MouseController.Instance.PlantData;
-        switch (plantData.Requirements)
+        switch (MouseController.Instance.PlantData.Requirements)
         {
             case RequirementsType.INSIDE:
-                var isValid = InsideRequirement.IsValid(plantData.TerrainType, m_Data.TerrainType);
-                m_CurrentPlantState = Plant(plantData, isValid);
+                ExecuteInsideRequirements();
                 break;
             case RequirementsType.ADJACENT:
-                if (AdjacentRequirement.IsValid())
-                {
-
-                }
+                AdjacentRequirement.OnCompletedRaycast += ExecuteAdjacentRequirements;
                 break;
+
         }
+    }
+
+    private void ExecuteInsideRequirements()
+    {
+        var plantData = MouseController.Instance.PlantData;
+        var isValid = InsideRequirement.IsValid(plantData.TerrainType, m_Data.TerrainType);
+        m_CurrentPlantState = Plant(plantData, isValid);
+
+    }
+
+    private void ExecuteAdjacentRequirements()
+    {
+        var plantData = MouseController.Instance.PlantData;
+        var isValid = AdjacentRequirement.IsValid();
+        m_CurrentPlantState = Plant(plantData, isValid);
+
+        m_IsClick = false;
+        AdjacentRequirement.Reset();
+    }
+
+    private void Update()
+    {
+        if (m_IsClick == false) return;
+
+        var plantData = MouseController.Instance.PlantData;
+        if (plantData.Requirements != RequirementsType.ADJACENT) return;
+        AdjacentRequirement.Raycasts(plantData.TerrainType, this.gameObject);
     }
 }
