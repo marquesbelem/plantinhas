@@ -838,7 +838,7 @@ PrefabInstance:
     - target: {fileID: 907911144017830949, guid: c976a840e1352f649972e8183735f13f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -631510259546485383, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
+      objectReference: {fileID: -1777176730, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
     - target: {fileID: 3919325620798981053, guid: c976a840e1352f649972e8183735f13f, type: 3}
       propertyPath: m_Name
       value: Terrain
@@ -846,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 6805698288064115528, guid: c976a840e1352f649972e8183735f13f, type: 3}
       propertyPath: m_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 903aa187e486e1d4aa7941dcb528464e, type: 2}
+      objectReference: {fileID: 11400000, guid: 63ca8c99d47e6454dad59b6309e2bd51, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -903,7 +903,7 @@ PrefabInstance:
     - target: {fileID: 907911144017830949, guid: c976a840e1352f649972e8183735f13f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -631510259546485383, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
+      objectReference: {fileID: -1777176730, guid: 5958b12af69ca5c4cba499cd7f6f80e6, type: 3}
     - target: {fileID: 907911144017830949, guid: c976a840e1352f649972e8183735f13f, type: 3}
       propertyPath: m_SortingOrder
       value: 6
@@ -915,7 +915,7 @@ PrefabInstance:
     - target: {fileID: 6805698288064115528, guid: c976a840e1352f649972e8183735f13f, type: 3}
       propertyPath: m_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 903aa187e486e1d4aa7941dcb528464e, type: 2}
+      objectReference: {fileID: 11400000, guid: 63ca8c99d47e6454dad59b6309e2bd51, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
