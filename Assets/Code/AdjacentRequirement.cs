@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class AdjacentRequirement
+public class AdjacentRequirement
 {
-    private static float m_RayDistance = 2f;
-    private static Color m_RayColor = Color.red;
-    private static List<Terrain> m_AdjacentTerrainsMet = new List<Terrain>();
-    private static List<Terrain> m_AdjacentAnyTerrains = new List<Terrain>();
-    public static List<Terrain> AdjacentAnyTerrains => m_AdjacentAnyTerrains;
-    public static Action OnCompletedRaycast;
+    private float m_RayDistance = 2f;
+    private Color m_RayColor = Color.red;
+    private List<Terrain> m_AdjacentTerrainsMet = new List<Terrain>();
+    private List<Terrain> m_AdjacentAnyTerrains = new List<Terrain>();
+    public Action OnCompletedRaycast;
 
-    public static bool IsValid()
+    public bool IsValid()
     {
         return m_AdjacentTerrainsMet.Count > 0;
     }
 
-    public static void Raycasts(TerrainType terrainRequirement, GameObject target)
+    public void Raycasts(TerrainType terrainRequirement, GameObject target)
     {
         Vector2 targetPosition = target.transform.position;
-        float radianRotation = target.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+        //float radianRotation = target.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+        float radianRotation = 33f * Mathf.Deg2Rad;
 
         Vector2[] directions = {
             new Vector2(Mathf.Cos(radianRotation), Mathf.Sin(radianRotation)), // Direção do "cima"
@@ -54,10 +54,36 @@ public static class AdjacentRequirement
         OnCompletedRaycast?.Invoke();
     }
 
-    public static void Reset()
+    public void Reset()
     {
         m_AdjacentTerrainsMet.Clear();
         m_AdjacentAnyTerrains.Clear();
         OnCompletedRaycast = null;
+    }
+
+    public void TransformExecute(ResultData resultData)
+    {
+        var transformData = (TransformData)resultData;
+        if (transformData == null) return;
+
+        foreach (var terrain in m_AdjacentAnyTerrains)
+        {
+            terrain.SetData(transformData.Terrain);
+            terrain.SetupSprite();
+        }
+    }
+
+    public void ReplicaExecute(PlantData plantData, ResultData resultData)
+    {
+        var replicaData = (ReplicaData)resultData;
+        if (replicaData == null) return;
+
+        foreach (var terrain in m_AdjacentAnyTerrains)
+        {
+            if (terrain.Data.TerrainType != replicaData.TerrainType 
+                || terrain.CurrentPlantState?.State == StatePlant.Adult)
+                continue;
+            terrain.CurrentPlantState = terrain.Plant(plantData, true);
+        }
     }
 }

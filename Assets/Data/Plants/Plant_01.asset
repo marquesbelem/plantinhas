@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TerrainType: 3
   Requirements: 1
-  Result: {fileID: 11400000, guid: 2a9b332292a1ca94491e5b3237719d06, type: 2}
+  Result: {fileID: 11400000, guid: 134b5bac0d1514e4b9a8fd43870942fe, type: 2}
   Sprites:
   - State: 1
     Sprite: {fileID: 143346167644803916, guid: 63d62ab086e791a48b747eb1e75f1dee, type: 3}

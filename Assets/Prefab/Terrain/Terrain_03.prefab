@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 687850111111604703}
   - component: {fileID: 907911144017830949}
   - component: {fileID: 6805698288064115528}
-  - component: {fileID: 3184564137157864858}
   - component: {fileID: 293613684766528046}
+  - component: {fileID: 3466169095449755210}
   m_Layer: 0
   m_Name: Terrain_03
   m_TagString: Terrain
@@ -137,8 +137,22 @@ MonoBehaviour:
   m_Data: {fileID: 11400000, guid: 63ca8c99d47e6454dad59b6309e2bd51, type: 2}
   m_PlantPrefab: {fileID: 8198375070296420042, guid: 0df07902d0d57324387273b3269f17e2, type: 3}
   m_Pivot: {fileID: 7670060275019103600}
---- !u!61 &3184564137157864858
-BoxCollider2D:
+  CurrentPlantState: {fileID: 0}
+--- !u!114 &293613684766528046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919325620798981053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca5770bcacbd4f208f55ba07c65d4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSideLength: 0.35
+--- !u!68 &3466169095449755210
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -172,27 +186,14 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.55, y: 2.55}
-    newSize: {x: 2.56, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
---- !u!114 &293613684766528046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3919325620798981053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca5770bcacbd4f208f55ba07c65d4cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSideLength: 0.35
+  m_EdgeRadius: 0.35
+  m_Points:
+  - {x: 0.7984223, y: 0.5438862}
+  - {x: 0.034288768, y: 0.9567493}
+  - {x: -0.7873162, y: 0.54382575}
+  - {x: -0.03237375, y: 0.14892077}
+  - {x: 0.7879126, y: 0.55036104}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
