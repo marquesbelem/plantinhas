@@ -10,7 +10,11 @@ public class MouseController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if(Instance == null)
+            Instance = this;
+        else 
+            Destroy(gameObject);
+
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_SpriteRenderer.enabled = false;
     }

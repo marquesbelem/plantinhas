@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7345873058725250123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7951325623623884795}
+  - component: {fileID: 3625248860995534527}
+  - component: {fileID: 2176307352956139515}
+  m_Layer: 0
+  m_Name: Controllers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7951325623623884795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345873058725250123}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3625248860995534527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345873058725250123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3532754631dd2409ab7eb9e2e70aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UndoButton: {fileID: 0}
+  m_IndexUndo: -1
+--- !u!114 &2176307352956139515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345873058725250123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc298ea1f4851a49a8b2c9506d16c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TerrainsData:
+  - {fileID: 11400000, guid: 0c9bfb39ff13a1e40a1a520dc7a8f2e9, type: 2}
+  - {fileID: 11400000, guid: 903aa187e486e1d4aa7941dcb528464e, type: 2}
+  - {fileID: 11400000, guid: 63ca8c99d47e6454dad59b6309e2bd51, type: 2}
+  m_PlantsData:
+  - {fileID: 11400000, guid: 5af2900a4a5d0e943976d9dc35abb062, type: 2}
+  - {fileID: 11400000, guid: 1597469f3d905e4478202d87e11576c0, type: 2}
+  - {fileID: 11400000, guid: 2df23a6e03cca994e9bf58cfd595c0ef, type: 2}

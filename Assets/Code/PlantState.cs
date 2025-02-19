@@ -21,6 +21,7 @@ public class PlantState : MonoBehaviour
 
     public StatePlant State { get { return m_State; } }
 
+    private Coroutine m_Coroutine;
     #region MonoBehaviour
     void Start()
     {
@@ -53,6 +54,20 @@ public class PlantState : MonoBehaviour
             m_OnChangedState_WrongMet += OnChangedStateWrongMet;
 
         SetState(StatePlant.Seed);
+    }
+
+    public void Setup(PlantData data, bool isMet)
+    {
+        if (m_Coroutine != null)
+            StopCoroutine(m_Coroutine);
+
+        if (data == null)
+        {
+            SetState(StatePlant.None);
+            m_Data = null;
+            return;
+        }
+        Setup(data, transform.parent, transform, isMet);
     }
 
     #region Events 
@@ -94,24 +109,24 @@ public class PlantState : MonoBehaviour
     #region States
     private void None()
     {
-        m_Sprite.sprite = m_Data.Sprites.Find(s => s.State == StatePlant.None).Sprite;
+        m_Sprite.sprite = null;
     }
 
     private void Seed()
     {
-        StartCoroutine(ExecuteState(StatePlant.Seed));
+        m_Coroutine = StartCoroutine(ExecuteState(StatePlant.Seed));
         SetState(StatePlant.Bud);
     }
 
     private void Bud()
     {
-        StartCoroutine(ExecuteState(StatePlant.Bud));
+        m_Coroutine = StartCoroutine(ExecuteState(StatePlant.Bud));
         SetState(StatePlant.Adult);
     }
 
     private void Adult()
     {
-        StartCoroutine(ExecuteState(StatePlant.Adult));
+        m_Coroutine = StartCoroutine(ExecuteState(StatePlant.Adult));
     }
 
     private IEnumerator ExecuteState(StatePlant state)
