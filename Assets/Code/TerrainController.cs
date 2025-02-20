@@ -37,18 +37,11 @@ public class TerrainController : MonoBehaviour
         terrainFind.SetData(terrainData);
         terrainFind.SetupSprite();
 
-        if (terrainFind.CurrentPlantState != null)
-        {
-            //terrainFind.CurrentPlantState.Setup(null, false);
-            //terrainFind.CurrentPlantData = null;
-            Destroy(terrainFind.CurrentPlantState.gameObject);
-        }
-
         if (string.IsNullOrEmpty(data.PlantNameData))
             return;
 
         var plantData = m_PlantsData.Find(p => p.name == data.PlantNameData);
         if (plantData != null)
-            terrainFind.CurrentPlantState = terrainFind.Plant(plantData, data.IsMet);
+            terrainFind.Plant(plantData, data.IsMet);
     }
 }

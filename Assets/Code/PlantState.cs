@@ -41,23 +41,11 @@ public class PlantState : MonoBehaviour
         m_OnChangedState_WrongMet?.Invoke();
     }
 
-    public void Setup(PlantData data, Transform parent, Transform pivot, bool isMet)
-    {
-        transform.SetParent(parent, false);
-        transform.position = pivot.position;
-        name = data.name;
-
-        m_Data = data;
-        if (isMet)
-            m_OnChangedState_CorretilyMet += OnChangedStateCorretilyMet;
-        else
-            m_OnChangedState_WrongMet += OnChangedStateWrongMet;
-
-        SetState(StatePlant.Seed);
-    }
-
     public void Setup(PlantData data, bool isMet)
     {
+        name = data.name;
+        m_Data = data;
+
         if (m_Coroutine != null)
             StopCoroutine(m_Coroutine);
 
@@ -67,7 +55,13 @@ public class PlantState : MonoBehaviour
             m_Data = null;
             return;
         }
-        Setup(data, transform.parent, transform, isMet);
+
+        if (isMet)
+            m_OnChangedState_CorretilyMet += OnChangedStateCorretilyMet;
+        else
+            m_OnChangedState_WrongMet += OnChangedStateWrongMet;
+
+        SetState(StatePlant.Seed);
     }
 
     #region Events 

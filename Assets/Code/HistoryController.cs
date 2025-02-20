@@ -123,7 +123,7 @@ public class HistoryController : MonoBehaviour
         {
             HistoryData historyData = new HistoryData();
             historyData.TerrainType = terrain.Data.TerrainType;
-            historyData.PlantNameData = terrain.CurrentPlantData?.name;
+            historyData.PlantNameData = terrain.PlantData?.name;
             historyData.IsMet = terrain.IsMeet;
             historyData.TerrainName = terrain.name;
             historiesData.Data.Add(historyData);

@@ -5,19 +5,17 @@ using static PlantData;
 public class Terrain : MonoBehaviour
 {
     [SerializeField] private TerrainData m_Data;
-    [SerializeField] private GameObject m_PlantPrefab;
-    [SerializeField] private Transform m_Pivot;
 
     private SpriteRenderer m_Sprite;
-    public PlantState CurrentPlantState;
-    public PlantData CurrentPlantData;
+    public PlantState PlantState;
+    public PlantData PlantData;
 
     private bool m_IsClick;
     private AdjacentRequirement m_AdjacentRequirement;
     private InsideRequirement m_InsideRequirement;
     public TerrainData Data => m_Data;
 
-    public bool IsMeet = false; 
+    public bool IsMeet = false;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -48,31 +46,23 @@ public class Terrain : MonoBehaviour
         m_Data = data;
     }
 
-    public PlantState Plant(PlantData data, bool isMet)
+    public void Plant(PlantData data, bool isMet)
     {
-        var plant = Instantiate(m_PlantPrefab)
-            .GetComponent<PlantState>();
-
-        plant.Setup(data, transform, m_Pivot, isMet);
-        return plant;
+        PlantState.Setup(data, isMet);
     }
 
     private void OnMouseDown()
     {
         if (Application.isPlaying == false ||
             MouseController.Instance.PlantData == null) return;
-        
+
         //FirstHistory();
 
-        CurrentPlantData = MouseController.Instance.PlantData;
+        PlantData = MouseController.Instance.PlantData;
 
-        if (CurrentPlantState != null)
-        {
-            if (CurrentPlantState?.State == StatePlant.Adult) return;
-            Destroy(CurrentPlantState.gameObject);
-        }
+        if (PlantState?.State == StatePlant.Adult) return;
 
-        switch (CurrentPlantData.Requirements)
+        switch (PlantData.Requirements)
         {
             case RequirementsType.INSIDE:
                 InsideRequirementsExecute();
@@ -88,27 +78,27 @@ public class Terrain : MonoBehaviour
 
     private void InsideRequirementsExecute()
     {
-        var isValid = m_InsideRequirement.IsValid(CurrentPlantData.TerrainType, m_Data.TerrainType);
-        CurrentPlantState = Plant(CurrentPlantData, isValid);
+        var isValid = m_InsideRequirement.IsValid(PlantData.TerrainType, m_Data.TerrainType);
+        Plant(PlantData, isValid);
         IsMeet = isValid;
     }
 
     private void AdjacentRequirementsExecute()
     {
         var isValid = m_AdjacentRequirement.IsValid();
-        CurrentPlantState = Plant(CurrentPlantData, isValid);
+        Plant(PlantData, isValid);
 
         if (isValid)
         {
             try
             {
-                m_AdjacentRequirement.TransformExecute(CurrentPlantData.Result);
+                m_AdjacentRequirement.TransformExecute(PlantData.Result);
             }
             catch { }
 
             try
             {
-                m_AdjacentRequirement.ReplicaExecute(CurrentPlantData, CurrentPlantData.Result);
+                m_AdjacentRequirement.ReplicaExecute(PlantData, PlantData.Result);
             }
             catch { }
         }
@@ -122,7 +112,7 @@ public class Terrain : MonoBehaviour
     {
         if (m_IsClick == false) return;
 
-        if (CurrentPlantData.Requirements != RequirementsType.ADJACENT) return;
-        m_AdjacentRequirement.Raycasts(CurrentPlantData.TerrainType, this.gameObject);
+        if (PlantData.Requirements != RequirementsType.ADJACENT) return;
+        m_AdjacentRequirement.Raycasts(PlantData.TerrainType, this.gameObject);
     }
 }

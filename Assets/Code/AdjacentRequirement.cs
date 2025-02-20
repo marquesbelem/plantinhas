@@ -81,9 +81,9 @@ public class AdjacentRequirement
         foreach (var terrain in m_AdjacentAnyTerrains)
         {
             if (terrain.Data.TerrainType != replicaData.TerrainType 
-                || terrain.CurrentPlantState?.State == StatePlant.Adult)
+                || terrain.PlantState?.State == StatePlant.Adult)
                 continue;
-            terrain.CurrentPlantState = terrain.Plant(plantData, true);
+            terrain.Plant(plantData, true);
         }
     }
 }
